@@ -14,20 +14,14 @@ $this->set(compact('title_for_layout', 'description', 'keywords'));
 
 
 <div itemscope itemtype="http://schema.org/Product">
+    <h1 itemprop="name"><?php echo $product->name; ?></h1>
     <div class="row">
-        <div class="col-lg-5 col-md-5 col-sm-12">
-            <?php echo $this->Html->image('/images/large/' . $product->image, ['class' => 'img-fluid', 'alt' => $product->name, 'itemprop' => 'image']); ?>
+        <div class="col-md-6 col-sm-12">
+            <?php echo $this->Html->image('/images/large/' . $product->image, ['class' => 'img-fluid img-thumbnail', 'alt' => $product->name, 'itemprop' => 'image']); ?>
             <br />
             <br />
         </div>
-        <div class="col-lg-7 col-md-7 col-sm-12">
-            <h1 itemprop="name"><?php echo $product->name; ?></h1>
-            <h4><?php echo $this->Html->link($product->category->name, ['controller' => 'categories',  'action' => 'view', $product->category->slug]); ?></h4>
-
-            <span itemprop="description"><?php echo $product->description; ?></span>
-
-            <br />
-            <br />
+        <div class="col-md-6 col-sm-12">
 
             <?php echo $this->Form->create(NULL, ['url' => ['controller' => 'products', 'action' => 'add']]); ?>
             <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $product->id)); ?>
@@ -82,6 +76,17 @@ $this->set(compact('title_for_layout', 'description', 'keywords'));
             <?php echo $this->Form->end(); ?>
 
             <br />
+
+            <span itemprop="description"><?php echo $product->description; ?></span>
+
+            <br />
+            <br />
+
+            <small>Category: <?php echo $this->Html->link($product->category->name, ['controller' => 'categories',  'action' => 'view', $product->category->slug]); ?></small>
+
+            <br />
+            <br />
+
             <small><?php echo $product->name; ?></small>
 
             <br />

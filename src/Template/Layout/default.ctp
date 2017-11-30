@@ -46,7 +46,7 @@
     <div class="main">
         <div class="container">
             <?= $this->Flash->render(); ?>
-            <?php echo $this->Html->getCrumbs(' / ', '', ['class' => 'breadcr1umb']); ?>
+            <?php echo $this->Html->getCrumbs('&nbsp;/&nbsp;', '', ['class' => 'breadcr1umb']); ?>
             <?php echo $this->fetch('content'); ?>
             <br />
             <br />

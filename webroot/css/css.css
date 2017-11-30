@@ -72,10 +72,12 @@ h3 {
 .breadcrumb {
     background-color: #E8E8E8;
     margin-bottom: 0px;
+    padding: 4px;
+    font-size: 85%;
 }
 
 .breadcrumb, .alert {
-    border-radius: 0px;
+    border-radius: 2px;
 }
 
 .pad10 {
