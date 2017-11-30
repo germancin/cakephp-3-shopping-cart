@@ -20,6 +20,8 @@ class ProductoptionsTable extends Table
         $this->displayField('name');
         $this->primaryKey('id');
 
+        $this->addBehavior('Timestamp');
+
         $this->belongsTo('Products', [
             'foreignKey' => 'product_id',
             'joinType' => 'INNER'
