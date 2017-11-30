@@ -12,7 +12,6 @@ $this->set(compact('title_for_layout', 'description', 'keywords'));
 <br />
 <br />
 
-
 <div itemscope itemtype="http://schema.org/Product">
     <h1 itemprop="name"><?php echo $product->name; ?></h1>
     <div class="row">
