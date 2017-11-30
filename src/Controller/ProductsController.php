@@ -2,8 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-// use Cake\Utility\Inflector;
-use Cake\Utility\Hash;
 
 class ProductsController extends AppController
 {
@@ -20,31 +18,6 @@ class ProductsController extends AppController
 
     public function sitemap()
     {
-        $this->loadModel('Items');
-        $items = $this->Items->find('all', [
-            'conditions' => [
-                'Items.active' => 1,
-            ],
-            'fields' => [
-                'Items.slug'
-            ],
-            'conditions' => [
-                'Items.active' => 1,
-            ]
-        ]);
-        $this->set(compact('items'));
-
-        $this->loadModel('Projects');
-        $projects = $this->Projects->find('all', [
-            'conditions' => [
-                'Projects.active' => 1,
-            ],
-            'fields' => [
-                'Projects.slug'
-            ],
-        ])->all();
-        $this->set(compact('projects'));
-
         $products = $this->Products->find('all', [
             'order' => [
                 'Products.name' => 'ASC'
@@ -58,23 +31,8 @@ class ProductsController extends AppController
         ]);
         $this->set(compact('products'));
 
-        $categories = $this->Products->Categories->find('all', [
-            'order' => [
-                'Categories.sort' => 'ASC',
-                'Categories.name' => 'ASC',
-            ],
-            'fields' => [
-                'Categories.slug'
-            ],
-            'conditions' => [
-                'Categories.active' => 1,
-            ]
-        ]);
-        $this->set(compact('categories'));
-
         $this->response->type('xml');
         $this->viewBuilder()->layout(false);
-
     }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,13 +57,6 @@ class ProductsController extends AppController
 
     public function view($slug = null)
     {
-        $categories = $this->Products->Categories->find('all', [
-            'order' => [
-                'Categories.sort' => 'ASC',
-                'Categories.name' => 'ASC',
-            ]
-        ]);
-        $this->set(compact('categories'));
 
         $product = $this->Products->find('all', [
             'contain' => ['Categories'],
@@ -141,30 +92,7 @@ class ProductsController extends AppController
             $productoptionlists[$productoption->id] = $productoption->name . ' - ' . '$' . $price;
         endforeach;
 
-        $weights = Hash::extract($productoptions->toArray(), '{n}.weight');
-        $weights = array_unique($weights);
-        natcasesort($weights);
-
-        $shorts = Hash::extract($productoptions->toArray(), '{n}.short');
-        $shorts = array_unique($shorts);
-        natcasesort($shorts);
-
-        $this->set(compact('shorts', 'weights'));
-
-        $attribute = null;
-        if(isset($productption->attribute_id)) {
-            $attribute = $this->Products->Productoptions->Attributes->find('all', [
-                'conditions' => [
-                    'Attributes.id' => $productption->attribute_id,
-                ],
-            ])->first();
-        }
-
-        $this->set('product', $product);
-        $this->set('productoptions', $productoptions);
-        $this->set('productoptionlists', $productoptionlists);
-        $this->set('attribute', $attribute);
-        $this->set('_serialize', ['product']);
+        $this->set(compact('product', 'productoptions', 'productoptionlists'));
     }
 
 ////////////////////////////////////////////////////////////////////////////////

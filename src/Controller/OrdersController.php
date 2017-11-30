@@ -89,35 +89,13 @@ class OrdersController extends AppController
 
                 $email = new Email();
 
-                $email->from(['web@domain.com' => 'domain'])
+                $email->from(['info@domain.com' => 'domain'])
                     ->transport('default')
-                    ->sender('web@domain.com', 'domain')
+                    ->sender('info@domain.com', 'domain')
                     ->domain('www.domain.com')
                     ->emailFormat('html')
-                    ->to('web@domain.com')
-                    ->subject('domain Website Order')
-                    ->template('order', 'default')
-                    ->viewVars(['shop' => $shop, 'order' => $order])
-                    ->send();
-
-                $email->from(['web@domain.com' => 'domain'])
-                    ->transport('default')
-                    ->sender('web@domain.com', 'domain')
-                    ->domain('www.domain.com')
-                    ->emailFormat('html')
-                    ->to('josh@domain.com')
-                    ->subject('domain Website Order')
-                    ->template('order', 'default')
-                    ->viewVars(['shop' => $shop, 'order' => $order])
-                    ->send();
-
-                $email->from(['web@domain.com' => 'domain'])
-                    ->transport('default')
-                    ->sender('web@domain.com', 'domain')
-                    ->domain('www.domain.com')
-                    ->emailFormat('html')
-                    ->to('andras@kende.com')
-                    ->subject('domain Website Order')
+                    ->to('info@domain.com')
+                    ->subject('Website Order')
                     ->template('order', 'default')
                     ->viewVars(['shop' => $shop, 'order' => $order])
                     ->send();
@@ -128,7 +106,7 @@ class OrdersController extends AppController
                     ->domain('www.domain.com')
                     ->emailFormat('html')
                     ->to($order->email)
-                    ->subject('domain Website Order')
+                    ->subject('Website Order')
                     ->template('order', 'default')
                     ->viewVars(['shop' => $shop, 'order' => $order])
                     ->send();
