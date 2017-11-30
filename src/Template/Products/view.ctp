@@ -23,36 +23,15 @@ $this->set(compact('title_for_layout', 'description', 'keywords'));
         <div class="col-md-6 col-sm-12">
 
             <?php echo $this->Form->create(NULL, ['url' => ['controller' => 'products', 'action' => 'add']]); ?>
-            <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $product->id)); ?>
+            <?php echo $this->Form->input('id', ['type' => 'hidden', 'value' => $product->id]); ?>
 
             <?php // print_r($productoptions); ?>
 
             <?php if(!empty($productoptionlists)): ?>
-                <?php if(!empty($attribute->name)): ?>
-                    <?php echo $attribute->name; ?>
-                <?php endif; ?>
                 <div class="row">
                     <div class="col-sm-12">
-                        <?php if(!empty($shorts[0])): ?>
-                            <small>
-                            <?php foreach($shorts as $k => $v): ?>
-                                <button type="button" class="shorts btn btn-secondary btn-sm" data-target="#productoptionlist" value="<?php echo $v; ?>"><?php echo $v; ?></button>
-                            <?php endforeach; ?>
-                            <br />
-                            <br />
-                            </small>
-                        <?php endif; ?>
-                        <?php if(!empty($weights[0])): ?>
-                            <small>
-                            <?php foreach($weights as $k => $v): ?>
-                                <button type="button" class="weights btn btn-secondary btn-sm" data-target="#productoptionlist" value="<?php echo $v; ?>"><?php echo $v; ?></button>
-                            <?php endforeach; ?>
-                            <br />
-                            <br />
-                            </small>
-                        <?php endif; ?>
                         <?php if(!empty($productoptions)): ?>
-                            <?php echo $this->Form->input('productoptionlist', ['label' => false, 'empty' => '- Please Select', 'class' => 'form-control']); ?>
+                            <?php echo $this->Form->input('productoptionlist', ['label' => false, 'class' => 'form-control']); ?>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -105,8 +84,8 @@ $this->set(compact('title_for_layout', 'description', 'keywords'));
             <tr>
                 <td>
                     <?php echo $this->Form->create(NULL, ['url' => ['controller' => 'products', 'action' => 'add']]); ?>
-                    <?php echo $this->Form->input('id', array('type' => 'hidden', 'value' => $product->id)); ?>
-                    <?php echo $this->Form->input('productoptionlist', array('type' => 'hidden', 'value' => $key)); ?>
+                    <?php echo $this->Form->input('id', ['type' => 'hidden', 'value' => $product->id]); ?>
+                    <?php echo $this->Form->input('productoptionlist', ['type' => 'hidden', 'value' => $key]); ?>
                     <?php echo $value; ?>
                 </td>
                 <td>
