@@ -155,23 +155,14 @@ class ImageComponent extends Component
         $ext = $exploded[count($exploded) - 1];
 
         if (preg_match('/jpg|jpeg/i', $ext)) {
-
             $src = imagecreatefromjpeg($srcPath);
-
         }else if (preg_match('/png/i', $ext)) {
-
             $src = imagecreatefrompng($srcPath);
-
         }else if (preg_match('/gif/i', $ext)) {
-
             $src = imagecreatefromgif($srcPath);
-
         }else if (preg_match('/bmp/i', $ext)) {
-
             $src = imagecreatefrombmp($srcPath);
-
         }else {
-
             $src = imagecreatefromjpeg($srcPath);
         }
 
